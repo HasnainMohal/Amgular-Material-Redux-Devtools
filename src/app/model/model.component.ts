@@ -52,6 +52,7 @@ constructor(
   })
   .subscribe((key) => {
     console.log('key: ', key);
+    this.dialog.closeAll();
   });
   }
 
@@ -72,5 +73,8 @@ constructor(
   formChanged() {
     this.wasFormChanged = true;
   }
-
+  close() {
+    this.dialog.closeAll();// set false while you need open your model popup
+   // do your more code
+}
 }
