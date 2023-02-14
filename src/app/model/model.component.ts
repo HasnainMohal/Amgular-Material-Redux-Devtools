@@ -22,8 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ModelComponent {
   public breakpoint: number | undefined; // Breakpoint observer code
-  public fname: string = `Ramesh`;
-  public lname: string = `Suresh`;
+  public fname: string = `Hasnain`;
+  public lname: string = `Haydar`;
   public addCusForm!: FormGroup;
   wasFormChanged = false;
 constructor(
