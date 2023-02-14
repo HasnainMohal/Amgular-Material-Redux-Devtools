@@ -1,9 +1,9 @@
-import { counterReducer } from "../user/state/counter.reducer";
-import { CounterState } from "../user/state/counter.state";
+import { userReducer } from "../user/state/user.reducer";
+import { UserState } from "../user/state/user.state";
 export interface AppState {
-    counter: CounterState,
+    user: UserState,
 }
 
 export const appReducer = {
-    counter: counterReducer,
+    user: userReducer,
 };

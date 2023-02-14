@@ -13,7 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,8 +40,14 @@ import { UserComponent } from './user/user.component';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ModelComponent } from './model/model.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './user-list/user-list.component';
+
 const materialModules = [
   CdkTreeModule,
+  ReactiveFormsModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
@@ -72,12 +78,17 @@ const materialModules = [
   MatGridListModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    ModelComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,9 +98,11 @@ const materialModules = [
     ...materialModules,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
-      logOnly: false, // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: true, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    })
+    }),
+    FormsModule
 
   ],
   exports: [

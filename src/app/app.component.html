@@ -1,0 +1,19 @@
+
+    <mat-toolbar color="primary" class="md-margin">
+        <div style="width:30%; display: flex; justify-content: space-between; align-items: center;">
+            <button [routerLink]="['/Home']" mat-icon-button class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon">
+            <span>Home</span>
+        </button>
+        <button [routerLink]="['/User']" mat-icon-button class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon">
+            <span>User</span>
+        </button>
+        <button [routerLink]="['/Tab']" mat-icon-button class="example-icon"
+            aria-label="Example icon-button with share icon">
+            <span>Tab</span>
+        </button>
+        </div>
+        
+    </mat-toolbar>
+<router-outlet></router-outlet>
