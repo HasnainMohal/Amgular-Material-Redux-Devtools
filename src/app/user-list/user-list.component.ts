@@ -9,6 +9,7 @@ import { from, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { filter } from 'rxjs/operators';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
   selector: 'app-user-list',
@@ -25,10 +26,18 @@ export class UserListComponent {
   user$!: Observable<any | undefined>;
   temp:any=[];
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private dbService: NgxIndexedDBService) {
     this.user$ = this.store.select(getCounter);
     this.user$.subscribe(data => {this.dataSource = new MatTableDataSource(data)
       this.dataSource.paginator = this.paginator;});
+      this.dbService.getAll('user').subscribe((peoples) => {
+        console.log(peoples);
+        if(peoples.length>0)
+        {
+          this.dataSource = new MatTableDataSource(peoples);
+          this.dataSource.paginator = this.paginator;
+        }
+      });
   }
 
   /**

@@ -44,7 +44,24 @@ import { ModelComponent } from './model/model.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
 
+const dbConfig: DBConfig  = {
+  name: 'MyDb',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'user',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'firstname', keypath: 'firstname', options: { unique: false } },
+      { name: 'lastname', keypath: 'lastname', options: { unique: false } },
+      { name: 'dob', keypath: 'dob', options: { unique: false } },
+      { name: 'email', keypath: 'email', options: { unique: false } },
+      { name: 'Address', keypath: 'Address', options: { unique: false } },
+      
+    ]
+  }]
+};
 const materialModules = [
   CdkTreeModule,
   ReactiveFormsModule,
@@ -102,6 +119,7 @@ const materialModules = [
       logOnly: true, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    NgxIndexedDBModule.forRoot(dbConfig),
     FormsModule
 
   ],

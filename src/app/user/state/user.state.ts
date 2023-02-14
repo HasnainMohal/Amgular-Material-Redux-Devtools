@@ -1,5 +1,4 @@
 export interface UserState {
-    UserData: any;
     firstname:string,
    lastname:string,
    dob:Date,

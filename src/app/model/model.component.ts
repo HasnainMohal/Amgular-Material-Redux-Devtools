@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { customIncrement } from '../user/state/user.actions';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -25,11 +26,11 @@ export class ModelComponent {
   public lname: string = `Suresh`;
   public addCusForm!: FormGroup;
   wasFormChanged = false;
-
-  constructor(
+constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private dbService: NgxIndexedDBService
   ) { }
 
   public ngOnInit(): void {
@@ -45,6 +46,13 @@ export class ModelComponent {
 
   public onAddCus(): void {
     this.store.dispatch(customIncrement(this.addCusForm.value));
+    this.dbService
+  .add('user', {
+   ...this.addCusForm.value
+  })
+  .subscribe((key) => {
+    console.log('key: ', key);
+  });
   }
 
 
